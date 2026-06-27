@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .section {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background: #f2f2f2;
+        }
+
+        .total {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ✅ HEADER (TABLE - PDF SAFE) -->
+<table width="100%">
+    <tr>
+        <td>
+            <img src="file:src/main/resources/static/images.png" width="60"/><br/>
+            <b style="font-size:18px;">JCI MarketPlace</b><br/>
+            Receipt ID: ORD-[[${orderId}]]
+        </td>
+
+        <td align="right">
+            <b style="color:green;">[[${paymentStatus}]]</b>
+        </td>
+    </tr>
+</table>
+
+<hr/>
+
+<!-- TRANSACTION -->
+<div class="section">
+    <b>Transaction Date:</b> [[${date}]]<br/>
+    <b>Transaction ID:</b> TXN-[[${orderId}]]
+</div>
+
+<!-- BUYER -->
+<div class="section">
+    <b>Customer Details</b><br/>
+    [[${buyerName}]]<br/>
+    [[${buyerEmail}]]<br/>
+    [[${buyerPhone}]]<br/>
+    [[${buyerAddress}]]
+</div>
+
+<!-- SELLER -->
+<div class="section">
+    <b>Seller Details</b><br/>
+    [[${sellerName}]]<br/>
+    [[${sellerEmail}]]<br/>
+    [[${sellerPhone}]]<br/>
+    [[${sellerAddress}]]
+</div>
+
+<!-- ITEMS -->
+<table>
+    <tr>
+        <th>Description</th>
+        <th>Qty</th>
+        <th>Total</th>
+    </tr>
+
+    <tr th:each="item : ${items}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.qty}"></td>
+        <td th:text="${item.total}"></td>
+    </tr>
+</table>
+
+<!-- TOTAL -->
+<div class="total">
+    Subtotal: [[${subtotal}]] <br/>
+    Tax (GST 18%): [[${tax}]] <br/>
+    <b>Total: [[${finalTotal}]]</b>
+</div>
+
+<br/><br/>
+
+<div>
+    Thank you for your purchase!
+</div>
+
+</body>
+</html>

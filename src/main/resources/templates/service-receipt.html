@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+
+        .section { margin-top: 20px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th { background: #f2f2f2; }
+
+        .total {
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<table width="100%">
+    <tr>
+        <td>
+            <img src="file:src/main/resources/static/images.png" width="60"/><br/>
+            <b>JCI MarketPlace</b><br/>
+            Receipt ID: SERV-[[${orderId}]]
+        </td>
+
+        <td align="right">
+            <b style="color:green;">[[${paymentStatus}]]</b>
+        </td>
+    </tr>
+</table>
+
+<hr/>
+
+<!-- TRANSACTION -->
+<div class="section">
+    <b>Date:</b> [[${date}]]<br/>
+    <b>Transaction ID:</b> TXN-SERV-[[${orderId}]]
+</div>
+
+<!-- BUYER -->
+<div class="section">
+    <b>Customer</b><br/>
+    [[${buyerName}]]<br/>
+    [[${buyerEmail}]]<br/>
+    [[${buyerPhone}]]<br/>
+    [[${buyerAddress}]]
+</div>
+
+<!-- SELLER -->
+<div class="section">
+    <b>Service Provider</b><br/>
+    [[${sellerName}]]<br/>
+    [[${sellerEmail}]]<br/>
+    [[${sellerPhone}]]<br/>
+    [[${sellerAddress}]]
+</div>
+
+<!-- SERVICE -->
+<table>
+    <tr>
+        <th>Service</th>
+        <th>Cost</th>
+    </tr>
+    <tr>
+        <td>[[${serviceName}]]</td>
+        <td>[[${cost}]]</td>
+    </tr>
+</table>
+
+<!-- TOTAL -->
+<div class="total">
+    Tax (18%): [[${tax}]] <br/>
+    <b>Total: [[${finalTotal}]]</b>
+</div>
+
+<br/><br/>
+
+<div>Thank you for your booking!</div>
+
+</body>
+</html>

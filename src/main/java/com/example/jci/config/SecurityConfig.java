@@ -40,7 +40,8 @@ public class SecurityConfig {
         config.setAllowedOriginPatterns(List.of(
             "http://localhost:5173",
             "http://localhost:3000",
-            "https://*.onrender.com"  // ✅ YOUR FRONTEND URL
+            "https://*.onrender.com",
+            "https://jci-frontend.onrender.com/" // ✅ YOUR FRONTEND URL
         ));
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));

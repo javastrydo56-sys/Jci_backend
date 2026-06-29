@@ -47,7 +47,7 @@ public class CartService {
             CartResponse empty = new CartResponse();
             empty.buyerId = buyerId;
             empty.items = java.util.List.of();
-            empty.grandTotal = 0;
+            empty.grandTotal = 0.0;
             return empty;
         }
 
@@ -55,7 +55,7 @@ public class CartService {
         response.cartId = cart.getId();
         response.buyerId = cart.getBuyerId();
 
-        double grandTotal = 0;
+        double grandTotal = 0.0;
 
         response.items = cart.getItems().stream().map(item -> {
 

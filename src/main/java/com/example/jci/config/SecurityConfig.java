@@ -41,7 +41,10 @@ public class SecurityConfig {
             "http://localhost:5173",
             "http://localhost:3000",
             "https://*.onrender.com",
-            "https://jci-frontend.onrender.com/" // ✅ YOUR FRONTEND URL
+            "https://jci-frontend.onrender.com/",
+            "https://www.jcimarketplace.com/",
+            "https://jcimarketplace.com/",
+            "jcimarketplace.com/"// ✅ YOUR FRONTEND URL
         ));
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));

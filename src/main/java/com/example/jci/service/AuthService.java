@@ -112,20 +112,14 @@ public class AuthService {
 
     public String registerBoth(BothRegisterRequest request) {
 
-        OrganizationMember member = orgRepo
-                .findByUserIdAndEmail(request.userId, request.email)
-                .orElseThrow(() -> new RuntimeException("❌ Not authorized"));
-
-        boolean alreadyBuyer = buyerRepo.findByUserId(request.userId).isPresent();
-        boolean alreadySeller = sellerRepo.findByUserId(request.userId).isPresent();
-
-        if (alreadyBuyer && alreadySeller) {
+        if (buyerRepo.findByUserId(request.userId).isPresent()
+                && sellerRepo.findByUserId(request.userId).isPresent()) {
             throw new RuntimeException("❌ Already registered as both Buyer and Seller");
         }
 
         String encodedPassword = passwordEncoder.encode(request.password);
 
-        if (!alreadyBuyer) {
+        if (buyerRepo.findByUserId(request.userId).isEmpty()) {
             Buyer buyer = new Buyer();
             buyer.setUserId(request.userId);
             buyer.setUsername(request.username);
@@ -136,11 +130,11 @@ public class AuthService {
             buyer.setCity(request.city);
             buyer.setState(request.state);
             buyer.setCountry(request.country);
-            buyer.setOrganizationName(member.getOrganizationName());
+            buyer.setOrganizationName(request.organizationName);
             buyerRepo.save(buyer);
         }
 
-        if (!alreadySeller) {
+        if (sellerRepo.findByUserId(request.userId).isEmpty()) {
             Seller seller = new Seller();
             seller.setUserId(request.userId);
             seller.setEmail(request.email);
@@ -153,12 +147,9 @@ public class AuthService {
             seller.setLocation(request.location);
             seller.setCompanyImage(request.companyImage);
             seller.setCompanyDescription(request.companyDescription);
-            seller.setOrganizationName(member.getOrganizationName());
+            seller.setOrganizationName(request.organizationName);
             sellerRepo.save(seller);
         }
-
-        member.setRegistered(true);
-        orgRepo.save(member);
 
         return "✅ Registered as both Buyer and Seller successfully";
     }

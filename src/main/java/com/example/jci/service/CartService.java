@@ -41,8 +41,15 @@ public class CartService {
   
     public CartResponse getCart(Long buyerId) {
 
-        Cart cart = cartRepo.findByBuyerId(buyerId)
-                .orElseThrow(() -> new RuntimeException("❌ Cart not found"));
+        Cart cart = cartRepo.findByBuyerId(buyerId).orElse(null);
+
+        if (cart == null) {
+            CartResponse empty = new CartResponse();
+            empty.buyerId = buyerId;
+            empty.items = java.util.List.of();
+            empty.grandTotal = 0;
+            return empty;
+        }
 
         CartResponse response = new CartResponse();
         response.cartId = cart.getId();

@@ -9,6 +9,7 @@ public class BothRegisterRequest {
     
     // Buyer fields
     public String username;
+    public String organizationName;
     public String phoneNumber;
     public String address;
     public String city;

@@ -17,10 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/service-orders")
-@CrossOrigin(
-	    origins = "http://localhost:5173",
-	    allowCredentials = "true"
-	)
+@CrossOrigin("*")
 public class ServiceOrderController {
 
     private final ServiceOrderService service;

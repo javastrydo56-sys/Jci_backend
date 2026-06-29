@@ -218,7 +218,13 @@ public class ServiceOrderService {
         List<ServiceOrder> orders = orderRepo.findByBuyerId(buyerId);
 
         if (orders.isEmpty()) {
-            throw new RuntimeException("❌ No orders found for buyer");
+            BuyerSpendingResponse empty = new BuyerSpendingResponse();
+            empty.buyerId = buyerId;
+            empty.totalSpent = java.math.BigDecimal.ZERO;
+            empty.totalOrders = 0;
+            empty.paidOrders = 0;
+            empty.orders = java.util.List.of();
+            return empty;
         }
 
         BuyerSpendingResponse res = new BuyerSpendingResponse();

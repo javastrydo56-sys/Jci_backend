@@ -48,7 +48,7 @@ public class SecurityConfig {
             "https://jci-frontend.onrender.com",
             "https://www.jcimarketplace.com",
             "https://jcimarketplace.com",
-            "jcimarketplace.com",// ✅ YOUR FRONTEND URL
+            "jcimarketplace.com"// ✅ YOUR FRONTEND URL
         ));
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
